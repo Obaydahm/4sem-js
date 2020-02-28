@@ -1,0 +1,1 @@
+const module = require("./my-module/");
