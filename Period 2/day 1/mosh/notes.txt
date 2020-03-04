@@ -1,0 +1,39 @@
+How to, dynamically, 
+assign a port number via an environment variable:
+Reason for using env var:
+On prod environment, the port is dynamically assigned by the
+hosting environment,
+and we can't rely on the port being 3000.
+
+Fix:
+Typically in hosting environments for node application,
+there is this environment variable called PORT.
+
+const port = process.env.PORT || 3000
+|| means otherwise, and we have that, because if process
+doesn't have an env var called port, then port isn't assigned.
+How to assign a env var on windows:
+set = envVarName = value
+
+How to use nodemon, to dynamically restart the server,
+whenever we make changes to our code
+1. install nodemon
+2. from now on run application with nodemon filename
+   and not node filename
+
+How to read request parameters (/:id)
+req.params.paramName
+req.params.id
+
+How to read query parameters (/?sort=asc)
+req.query.paramName
+req.query.sort
+
+How to read the request body 
+(typically for POST or PUT)
+We need to enable parsing of json objects
+in the body of the request.
+app.use(express.json());
+
+and then:
+req.body.name
