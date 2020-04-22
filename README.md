@@ -1,1 +1,1 @@
-# 4sem-js
+# 4sem-JS
