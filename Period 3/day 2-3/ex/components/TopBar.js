@@ -7,7 +7,7 @@ import { faBars, faSignal } from '@fortawesome/free-solid-svg-icons'
 export default TopBar = (props) => {
     const {setModalVisible, showActionSheet, serverIsUp} = props;
     return (
-        <View style={{ position: "absolute", flexDirection: "row", alignItems: "center", justifyContent: "center", width: Dimensions.get("window").width - 30, marginLeft: 15 }}>
+        <View style={{ position: "absolute", flexDirection: "row", marginTop: Constants.statusBarHeight, alignItems: "center", justifyContent: "center", width: Dimensions.get("window").width - 30, marginLeft: 15 }}>
 
             <TouchableOpacity style={[styles.userBar, styles.bRadiusLeft, { flex: .8 }]} activeOpacity={.8} onPress={() => { setModalVisible(true); }}>
                 <Text style={styles.userBarText}>Find nearby players</Text>
@@ -36,7 +36,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		alignContent: "center",
 		backgroundColor: "white",
-		marginTop: Constants.statusBarHeight,
 		flexDirection: "row",
 		shadowColor: "#000",
 		shadowOffset: {

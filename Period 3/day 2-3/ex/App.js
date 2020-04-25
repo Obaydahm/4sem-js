@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Platform, View, Alert, StatusBar, Modal } from 'react-native';
+import { Platform, View, Alert, StatusBar, Modal, Text, Dimensions } from 'react-native';
+import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import MapView from 'react-native-maps';
 import facade from "./serverFacade";
@@ -98,7 +99,7 @@ export default App = () => {
 	getNearbyPlayers = async () => {
 
 		try {
-			if(userInput.username == "" || userInput.password == "" ||  userInput.distance == "") throw new Error("You may not leave any field empty")
+			if (userInput.username == "" || userInput.password == "" || userInput.distance == "") throw new Error("You may not leave any field empty")
 			const res = await facade.getNearbyPlayers(userInput.username, userInput.password, position.longitude, position.latitude, userInput.distance);
 			if (res.code) {
 				throw new Error("Wrong username or password")
@@ -154,7 +155,7 @@ export default App = () => {
 			</Modal>
 
 
-			<MapView style={{flex: 1}} region={region} ref={mapRef} mapType="standard" showsCompass={false}>
+			<MapView style={{ flex: 1 }} region={region} ref={mapRef} mapType="standard" showsCompass={false}>
 
 				{//gameArea
 					serverIsUp && <MapView.Polygon coordinates={gameArea}
@@ -193,6 +194,16 @@ export default App = () => {
 
 			<TopBar setModalVisible={setModalVisible} showActionSheet={showActionSheet} serverIsUp={serverIsUp} />
 
+
+			{
+				status != "" ? (
+					<View style={{ position: "absolute", marginTop: Constants.statusBarHeight + 60, height: 50, backgroundColor: "rgba(0,0,0,.7)", justifyContent: "center", alignItems: "center", width: Dimensions.get("window").width - 30, marginLeft: 15, borderRadius: 5 }}>
+						<Text style={{ color: "#fff", fontSize: 16 }}> { status } </Text>
+					</View>
+				) : null
+			}
+
+
 			<ActionSheet
 				ref={o => this.ActionSheet = o}
 				options={['Update position', 'Show Game Area', 'cancel']}
@@ -211,4 +222,9 @@ export default App = () => {
 		</View>
 	);
 
+}
+
+function showStatusFromServer(setStatus, status) {
+	setStatus(status.msg);
+	setTimeout(() => setStatus(""), 3000);
 }
