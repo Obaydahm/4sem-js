@@ -6,6 +6,7 @@ interface IBook {
   pages?: number
 }
 
+//!new
 //b) Create a function that takes an IBook instance and test it with an object instance.
 const printBook = (book: IBook) => console.log(JSON.stringify(book))
 let a = {

@@ -1,6 +1,6 @@
-function kurt() {
-  console.log(hej)
+function logHej() {
+  console.log("hej")
 }
 
 module.exports.number = 123;
-module.exports.kurt = kurt;
+module.exports.logHej = logHej;

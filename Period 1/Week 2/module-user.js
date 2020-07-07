@@ -1,1 +1,2 @@
-const module = require("./my-module/");
+const myModule = require("./my-module");
+myModule.logHej()
